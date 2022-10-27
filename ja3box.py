@@ -116,7 +116,13 @@ def collector(pkt):
 
     dst_ip = IP_layer.dst
     dst_port = pkt.getlayer("TCP").dport
+    
+    if dst_ip == dstipblock:
+        return
 
+    if dst_port == dstportblock:
+        return
+    
     layer = get_attr(tcp_layer[0], 'msg')
     if not layer:
         # 有两种情况会导致为空
@@ -327,6 +333,16 @@ parser.add_argument(
     default=datetime.datetime.now().strftime("%Y.%m.%d-%X"),
     help="eg. `-pf test`: save the raw pcap as test.pcap"
 )
+parser.add_argument(
+    "-blockdstip",
+    default=None,
+    help="dst ip blacklist"
+)
+parser.add_argument(
+    "-blockdstport",
+    default=None,
+    help="dst port blacklist"
+)
 
 args = parser.parse_args()
 
@@ -343,6 +359,8 @@ roll = cycle('\\|-/')
 
 bpf = args.bpf
 need_json = args.json
+dstipblock = args.dstipblock
+dstportblock = args.blockdstport
 output_filename = args.of
 savepcap = args.savepcap
 pcap_filename = args.pf
