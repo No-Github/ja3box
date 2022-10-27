@@ -359,7 +359,7 @@ roll = cycle('\\|-/')
 
 bpf = args.bpf
 need_json = args.json
-dstipblock = args.dstipblock
+dstipblock = args.blockdstip
 dstportblock = args.blockdstport
 output_filename = args.of
 savepcap = args.savepcap
