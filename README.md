@@ -12,10 +12,11 @@ about ja3(s):
 
 ## Env
 
-1. `pip install scapy colorama cryptography`
-2. py3.x
-3. `macos`/`linux`/`windows`
-4. **run as root when in the online mode**
+1. `pip3 install scapy colorama cryptography`
+2. `pip3 install cryptography==3.3.2`
+3. py3.x
+4. `macos`/`linux`/`windows`
+5. **run as root when in the online mode**
 
 ## Example
 > online mode
